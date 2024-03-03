@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pharmacy Eye Drop/Ear Drop Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 200px;
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        select {
+            width: 200px;
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .calculate-button {
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: 18px;
+            background-color: lightblue;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .result {
+            font-weight: bold;
+            margin-top: 20px;
+            background-color: lightblue;
+            padding: 10px;
+            font-size: 20px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pharmacy Eye Drop/Ear Drop Calculator</h1>
+        <form onsubmit="calculate(event)">
+            <label for="dropsPerDose">Drops per Dose:</label>
+            <input type="number" id="dropsPerDose" required>
+            <br>
+            <label for="timesPerDay">Times Per Day:</label>
+            <input type="number" id="timesPerDay" required>
+            <br>
+            <label for="daysOfTherapy">Days of Therapy:</label>
+            <input type="number" id="daysOfTherapy" required>
+            <br>
+            <label for="dropsPerML">Drops per ML:</label>
+            <select id="dropsPerML">
+                <option value="10">10 drops/ml</option>
+                <option value="11">11 drops/ml</option>
+                <option value="12">12 drops/ml</option>
+                <option value="13">13 drops/ml</option>
+                <option value="14">14 drops/ml</option>
+                <option value="15">15 drops/ml</option>
+                <option value="16">16 drops/ml</option>
+                <option value="17">17 drops/ml</option>
+                <option value="18">18 drops/ml</option>
+                <option value="19">19 drops/ml</option>
+                <option value="20">20 drops/ml</option>
+            </select>
+            <br>
+            <input type="submit" value="Calculate" class="calculate-button">
+        </form>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculate(event) {
+            event.preventDefault();
+            const dropsPerDose = parseInt(document.getElementById("dropsPerDose").value);
+            const timesPerDay = parseInt(document.getElementById("timesPerDay").value);
+            const daysOfTherapy = parseInt(document.getElementById("daysOfTherapy").value);
+            const dropsPerML = parseInt(document.getElementById("dropsPerML").value);
+            const totalDrops = dropsPerDose * timesPerDay * daysOfTherapy;
+            const totalVolume = (totalDrops / dropsPerML).toFixed(2);
+            document.getElementById("result").textContent = `Total Drops Needed: ${totalDrops}, Total Volume Needed (ml): ${totalVolume}`;
+        }
+    </script>
+</body>
+</html>
